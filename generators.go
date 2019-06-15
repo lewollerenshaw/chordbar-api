@@ -7,6 +7,7 @@ import (
 
 /* Contains generators for modal scales and progressions */
 
+// Generates the chords for each degree in the scale
 func generateModalChords(chosenMode int) map[int]string {
 	if chosenMode == 1 {
 		return majorScaleChordMap
@@ -28,7 +29,8 @@ func generateModalChords(chosenMode int) map[int]string {
 	return newModalScale
 }
 
-func generateScaleSteps(chosenKey int) map[int]string {
+// Generates the scale of the given key
+func generateKeyScale(chosenKey int) map[int]string {
 	var note = chosenKey
 	var newModalScaleSteps = map[int]string{}
 
@@ -40,6 +42,8 @@ func generateScaleSteps(chosenKey int) map[int]string {
 	return newModalScaleSteps
 }
 
+// Generates the modal scale of the chosen mode
+// This and generateModalChords can be refactored
 func generateScaleNotes(majorScale map[int]string, chosenMode int) map[int]string {
 	if chosenMode == 1 {
 		return majorScale
@@ -61,6 +65,7 @@ func generateScaleNotes(majorScale map[int]string, chosenMode int) map[int]strin
 	return modalScaleNotes
 }
 
+// This maps the generetaed notes and chords together, outputting a modal scale
 func mapNotesToChords(modalScale map[int]string, modalNotes map[int]string) map[int]chord {
 	var newModalScale = map[int]chord{}
 
@@ -74,6 +79,7 @@ func mapNotesToChords(modalScale map[int]string, modalNotes map[int]string) map[
 	return newModalScale
 }
 
+// Generates a chord progression based on a passed scale, and progression length
 func generateChordProgression(modalScale map[int]chord, progressionLength int) map[int]chord {
 	var chordProgression = map[int]chord{}
 	max := 7

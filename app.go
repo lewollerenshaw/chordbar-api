@@ -10,7 +10,7 @@ func main() {
 	println("Mode:", noteMap[chosenKey], "", modeMap[chosenMode])
 
 	scale := mapNotesToChords(generateModalChords(chosenMode),
-		generateScaleNotes(generateScaleSteps(chosenKey), chosenMode))
+		generateScaleNotes(generateKeyScale(chosenKey), chosenMode))
 
 	chordProgression := generateChordProgression(scale, progressionLength)
 
