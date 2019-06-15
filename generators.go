@@ -29,54 +29,50 @@ func generateModalChords(chosenMode int) map[int]string {
 	return newModalScale
 }
 
-// Generates the scale of the given key
-func generateKeyScale(chosenKey int) map[int]string {
-	var note = chosenKey
-	var newModalScaleSteps = map[int]string{}
-
-	for i := 1; i < 8; i++ {
-		newModalScaleSteps[i] = noteMap[note]
-		note += scaleStepsMap[i]
-	}
-
-	return newModalScaleSteps
-}
-
-// Generates the modal scale of the chosen mode
-// This and generateModalChords can be refactored into a generic function
-func generateScaleNotes(majorScale map[int]string, chosenMode int) map[int]string {
+func generateModalSteps(chosenMode int) map[int]int {
 	if chosenMode == 1 {
-		return majorScale
+		return scaleStepsMap
 	}
 
-	var modalScaleNotes = map[int]string{}
+	var modalScaleSteps = map[int]int{}
 	var degree = 1
 
-	for i := chosenMode; i <= len(majorScale); i++ {
-		modalScaleNotes[degree] = majorScale[i]
+	for i := chosenMode; i <= len(majorScaleChordMap); i++ {
+		modalScaleSteps[degree] = scaleStepsMap[i]
 		degree++
 	}
 
 	for i := 1; i < chosenMode; i++ {
-		modalScaleNotes[degree] = majorScale[i]
+		modalScaleSteps[degree] = scaleStepsMap[i]
 		degree++
 	}
+	return modalScaleSteps
+}
 
-	return modalScaleNotes
+func generateModalNotes(chosenKey int, modalScaleSteps map[int]int) map[int]string {
+	var currentStep = chosenKey
+	var modalNotes = map[int]string{}
+
+	for i := 1; i < 8; i++ {
+		modalNotes[i] = noteMap[currentStep]
+		currentStep += modalScaleSteps[i]
+	}
+
+	return modalNotes
 }
 
 // This maps the generetaed notes and chords together, outputting a modal scale
-func mapNotesToChords(modalScale map[int]string, modalNotes map[int]string) map[int]chord {
-	var newModalScale = map[int]chord{}
+func mapModalScale(modalScaleNotes map[int]string, modalScaleChords map[int]string) map[int]chord {
+	var modalScale = map[int]chord{}
 
 	for i := 1; i < 8; i++ {
-		newModalScale[i] = chord{
-			note:  modalNotes[i],
-			chord: modalScale[i],
+		modalScale[i] = chord{
+			note:  modalScaleNotes[i],
+			chord: modalScaleChords[i],
 		}
 	}
 
-	return newModalScale
+	return modalScale
 }
 
 // Generates a chord progression based on a passed scale, and progression length
