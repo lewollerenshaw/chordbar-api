@@ -7,12 +7,13 @@ func main() {
 	chosenKey := 3
 	progressionLength := 4
 
-	println("Mode:", noteMap[chosenKey], "", modeMap[chosenMode])
+	modalScaleChords := generateModalChords(chosenMode)
+	modalScaleSteps := generateModalSteps(chosenMode)
+	modalScaleNotes := generateModalNotes(chosenKey, modalScaleSteps)
+	modalScale := mapModalScale(modalScaleNotes, modalScaleChords)
+	chordProgression := generateChordProgression(modalScale, progressionLength)
 
-	scale := mapNotesToChords(generateModalChords(chosenMode),
-		generateScaleNotes(generateKeyScale(chosenKey), chosenMode))
-
-	chordProgression := generateChordProgression(scale, progressionLength)
-
+	fmt.Println("Chosen Key: ", noteMap[chosenKey], modeMap[chosenMode])
+	fmt.Println(modalScale)
 	fmt.Println(chordProgression)
 }
