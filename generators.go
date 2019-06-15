@@ -46,7 +46,6 @@ func generateModalSteps(chosenMode int) map[int]int {
 		modalScaleSteps[degree] = scaleStepsMap[i]
 		degree++
 	}
-
 	return modalScaleSteps
 }
 
