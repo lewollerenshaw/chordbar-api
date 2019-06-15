@@ -43,7 +43,7 @@ func generateKeyScale(chosenKey int) map[int]string {
 }
 
 // Generates the modal scale of the chosen mode
-// This and generateModalChords can be refactored
+// This and generateModalChords can be refactored into a generic function
 func generateScaleNotes(majorScale map[int]string, chosenMode int) map[int]string {
 	if chosenMode == 1 {
 		return majorScale
