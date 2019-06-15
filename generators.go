@@ -29,6 +29,7 @@ func generateModalChords(chosenMode int) map[int]string {
 	return newModalScale
 }
 
+// Generates the steps of the chosen modal scale
 func generateModalSteps(chosenMode int) map[int]int {
 	if chosenMode == 1 {
 		return scaleStepsMap
@@ -49,6 +50,7 @@ func generateModalSteps(chosenMode int) map[int]int {
 	return modalScaleSteps
 }
 
+// Generates the notes of the corresponding modal scale based on a chosen key
 func generateModalNotes(chosenKey int, modalScaleSteps map[int]int) map[int]string {
 	var currentStep = chosenKey
 	var modalNotes = map[int]string{}
