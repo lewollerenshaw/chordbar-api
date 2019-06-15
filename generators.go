@@ -1,5 +1,10 @@
 package main
 
+import (
+	"math/rand"
+	"time"
+)
+
 /* Contains generators for modal scales and progressions */
 
 func generateModalChords(chosenMode int) map[int]string {
@@ -56,13 +61,30 @@ func generateScaleNotes(majorScale map[int]string, chosenMode int) map[int]strin
 	return modalScaleNotes
 }
 
-func mapNotesToChords(modalScale map[int]string, modalNotes map[int]string) map[int]map[string]string {
-	var newMap = map[int]map[string]string{}
+func mapNotesToChords(modalScale map[int]string, modalNotes map[int]string) map[int]chord {
+	var newModalScale = map[int]chord{}
 
 	for i := 1; i < 8; i++ {
-		newMap[i] = map[string]string{}
-		newMap[i][modalNotes[i]] = modalScale[i]
+		newModalScale[i] = chord{
+			note:  modalNotes[i],
+			chord: modalScale[i],
+		}
 	}
 
-	return newMap
+	return newModalScale
+}
+
+func generateChordProgression(modalScale map[int]chord, progressionLength int) map[int]chord {
+	var chordProgression = map[int]chord{}
+	max := 7
+	min := 1
+
+	rand.Seed(time.Now().UnixNano())
+	chordProgression[1] = modalScale[1]
+
+	for i := 2; i <= progressionLength; i++ {
+		chordProgression[i] = modalScale[rand.Intn(max-min)+min]
+	}
+
+	return chordProgression
 }

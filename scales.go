@@ -1,6 +1,11 @@
 package main
 
-/* Various maps for scales and degrees */
+/* Various types and maps for scales and degrees */
+
+type chord struct {
+	note  string
+	chord string
+}
 
 var modeMap = map[int]string{
 	1: "Ionian",
