@@ -1,6 +1,14 @@
 package main
 
+import "fmt"
+
 func main() {
-	//fmt.Println(generateModalScale(3))
-	generateModalScale(2)
+	chosenMode := 2
+	chosenKey := 3
+
+	println("Mode:", noteMap[chosenKey], "", modeMap[chosenMode])
+
+	fmt.Println(mapNotesToChords(generateModalChords(chosenMode),
+		generateScaleNotes(generateScaleSteps(chosenKey), chosenMode)))
+
 }

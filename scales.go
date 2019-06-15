@@ -1,6 +1,8 @@
 package main
 
-var modelist = map[int]string{
+/* Various maps for scales and degrees */
+
+var modeMap = map[int]string{
 	1: "Ionian",
 	2: "Dorian",
 	3: "Phrygian",
@@ -10,7 +12,7 @@ var modelist = map[int]string{
 	7: "Locrian",
 }
 
-var majorscalelist = map[int]string{
+var majorScaleChordMap = map[int]string{
 	1: "Major",
 	2: "Minor",
 	3: "Minor",
@@ -20,17 +22,39 @@ var majorscalelist = map[int]string{
 	7: "Diminished",
 }
 
-var notelist = map[int]string{
-	0:  "C",
-	1:  "Db",
-	2:  "D",
-	3:  "Eb",
-	4:  "E",
-	5:  "F",
-	6:  "F#",
-	7:  "G",
-	8:  "Ab",
-	9:  "A",
-	10: "Bb",
-	11: "B",
+var noteMap = map[int]string{
+	1:  "C",
+	2:  "Db",
+	3:  "D",
+	4:  "Eb",
+	5:  "E",
+	6:  "F",
+	7:  "F#",
+	8:  "G",
+	9:  "Ab",
+	10: "A",
+	11: "Bb",
+	12: "B",
+	13: "C",
+	14: "Db",
+	15: "D",
+	16: "Eb",
+	17: "E",
+	18: "F",
+	19: "F#",
+	20: "G",
+	21: "Ab",
+	22: "A",
+	23: "Bb",
+	24: "B",
+}
+
+var scaleStepsMap = map[int]int{
+	1: 2,
+	2: 2,
+	3: 1,
+	4: 2,
+	5: 2,
+	6: 2,
+	7: 1,
 }
