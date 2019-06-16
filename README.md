@@ -9,7 +9,8 @@ To install and run this solution, you will need to download the listed prerequis
 ## Prerequisites
 - You will need to install [golang](https://golang.org/dl/) on your machine to run this program.
 
-- You will also need to installl Gorilla Mux by running this command
+- You will also need to installl [Gorilla Mux](https://github.com/gorilla/mux) by running this command.
+
 ```
 go get -u github.com/gorilla/mux
 ```
