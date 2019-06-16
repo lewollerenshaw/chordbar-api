@@ -1,19 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 func main() {
-	chosenMode := 2
-	chosenKey := 3
-	progressionLength := 4
+	// Init router
+	r := mux.NewRouter()
 
+	// Route handlers / endpoints
+	r.HandleFunc("/api/generate-progression", serveChordProgression).Methods("GET")
+	r.HandleFunc("/api/generate-modalscale", serveModalScale).Methods("GET")
+	log.Fatal(http.ListenAndServe(":8000", r))
+}
+
+func serveChordProgression(w http.ResponseWriter, r *http.Request) {
 	modalScaleChords := generateModalChords(chosenMode)
 	modalScaleSteps := generateModalSteps(chosenMode)
 	modalScaleNotes := generateModalNotes(chosenKey, modalScaleSteps)
 	modalScale := mapModalScale(modalScaleNotes, modalScaleChords)
 	chordProgression := generateChordProgression(modalScale, progressionLength)
-
-	fmt.Println("Chosen Key: ", noteMap[chosenKey], modeMap[chosenMode])
-	fmt.Println(modalScale)
-	fmt.Println(chordProgression)
 }
