@@ -22,9 +22,7 @@ git clone https://github.com/lewollerenshaw/chordbar-api.git
 
 cd chordbar-api
 
-go build
-
-./chordbar-api
+go build && ./chordbar-api
 ```
 
 # Resources
