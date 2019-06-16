@@ -64,13 +64,13 @@ func generateModalNotes(chosenKey int, modalScaleSteps map[int]int) map[int]stri
 }
 
 // This maps the generetaed notes and chords together, outputting a modal scale
-func mapModalScale(modalScaleNotes map[int]string, modalScaleChords map[int]string) map[int]chord {
-	var modalScale = map[int]chord{}
+func mapModalScale(modalScaleNotes map[int]string, modalScaleChords map[int]string) map[int]Chord {
+	var modalScale = map[int]Chord{}
 
 	for i := 1; i < 8; i++ {
-		modalScale[i] = chord{
-			note:  modalScaleNotes[i],
-			chord: modalScaleChords[i],
+		modalScale[i] = Chord{
+			Note:  modalScaleNotes[i],
+			Chord: modalScaleChords[i],
 		}
 	}
 
@@ -78,8 +78,8 @@ func mapModalScale(modalScaleNotes map[int]string, modalScaleChords map[int]stri
 }
 
 // Generates a chord progression based on a passed scale, and progression length
-func generateChordProgression(modalScale map[int]chord, progressionLength int) map[int]chord {
-	var chordProgression = map[int]chord{}
+func generateChordProgression(modalScale map[int]Chord, progressionLength int) map[int]Chord {
+	var chordProgression = map[int]Chord{}
 	max := 7
 	min := 1
 

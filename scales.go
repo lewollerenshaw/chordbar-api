@@ -2,9 +2,10 @@ package main
 
 /* Various types and maps for scales and degrees */
 
-type chord struct {
-	note  string
-	chord string
+// Chord object ...
+type Chord struct {
+	Note  string `json:"note"`
+	Chord string `json:"chord"`
 }
 
 var modeMap = map[int]string{

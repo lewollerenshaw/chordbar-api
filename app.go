@@ -18,9 +18,19 @@ func main() {
 }
 
 func serveChordProgression(w http.ResponseWriter, r *http.Request) {
+	chosenMode := 4
+	chosenKey := 4
+	progressionLength := 4
+
 	modalScaleChords := generateModalChords(chosenMode)
 	modalScaleSteps := generateModalSteps(chosenMode)
 	modalScaleNotes := generateModalNotes(chosenKey, modalScaleSteps)
 	modalScale := mapModalScale(modalScaleNotes, modalScaleChords)
 	chordProgression := generateChordProgression(modalScale, progressionLength)
+
+	println(chordProgression)
+}
+
+func serveModalScale(w http.ResponseWriter, r *http.Request) {
+
 }
