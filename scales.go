@@ -1,13 +1,6 @@
 package main
 
-/* Various types and maps for scales and degrees */
-
-// Chord object ...
-type Chord struct {
-	Note  string `json:"note"`
-	Chord string `json:"chord"`
-}
-
+// Map for modes
 var modeMap = map[int]string{
 	1: "Ionian",
 	2: "Dorian",
@@ -18,6 +11,7 @@ var modeMap = map[int]string{
 	7: "Locrian",
 }
 
+// Map of the major scale
 var majorScaleChordMap = map[int]string{
 	1: "Major",
 	2: "Minor",
@@ -28,6 +22,18 @@ var majorScaleChordMap = map[int]string{
 	7: "Diminished",
 }
 
+// Map for steps of major scale
+var scaleStepsMap = map[int]int{
+	1: 2,
+	2: 2,
+	3: 1,
+	4: 2,
+	5: 2,
+	6: 2,
+	7: 1,
+}
+
+// Maps of musical notes, to 24 to account for possibility of loop hitting
 var noteMap = map[int]string{
 	1:  "C",
 	2:  "Db",
@@ -53,14 +59,4 @@ var noteMap = map[int]string{
 	22: "A",
 	23: "Bb",
 	24: "B",
-}
-
-var scaleStepsMap = map[int]int{
-	1: 2,
-	2: 2,
-	3: 1,
-	4: 2,
-	5: 2,
-	6: 2,
-	7: 1,
 }

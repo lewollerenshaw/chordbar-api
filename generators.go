@@ -5,8 +5,6 @@ import (
 	"time"
 )
 
-/* Contains generators for modal scales and progressions */
-
 // Generates the chords for each degree in the scale
 func generateModalChords(chosenMode int) map[int]string {
 	if chosenMode == 1 {
@@ -63,7 +61,7 @@ func generateModalNotes(chosenKey int, modalScaleSteps map[int]int) map[int]stri
 	return modalNotes
 }
 
-// This maps the generetaed notes and chords together, outputting a modal scale
+// This maps the generated notes and chords together, outputting a modal scale
 func mapModalScale(modalScaleNotes map[int]string, modalScaleChords map[int]string) map[int]Chord {
 	var modalScale = map[int]Chord{}
 

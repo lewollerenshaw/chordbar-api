@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -12,25 +14,55 @@ func main() {
 	r := mux.NewRouter()
 
 	// Route handlers / endpoints
-	r.HandleFunc("/api/generate-progression", serveChordProgression).Methods("GET")
-	r.HandleFunc("/api/generate-modalscale", serveModalScale).Methods("GET")
+	r.HandleFunc("/api/test", testConnection).Methods("GET")
+	r.HandleFunc("/api/progression", getChordProgression).Methods("GET")
+	r.HandleFunc("/api/scale", getModalScale).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", r))
 }
 
-func serveChordProgression(w http.ResponseWriter, r *http.Request) {
-	chosenMode := 4
-	chosenKey := 4
-	progressionLength := 4
+// Test connection to API is available
+// TODO: Remove this function when development finished
+func testConnection(w http.ResponseWriter, r *http.Request) {
+	chord := Chord{
+		Note:  "3",
+		Chord: "3",
+	}
+	log.Println("Test: Hit by request")
 
-	modalScaleChords := generateModalChords(chosenMode)
-	modalScaleSteps := generateModalSteps(chosenMode)
-	modalScaleNotes := generateModalNotes(chosenKey, modalScaleSteps)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(chord)
+}
+
+func getChordProgression(w http.ResponseWriter, r *http.Request) {
+	log.Println("Get Progression:  Hit by request")
+	w.Header().Set("Content-Type", "application/json")
+
+	var progression Progression
+
+	// Decode request body and stores it in progression
+	_ = json.NewDecoder(r.Body).Decode(&progression)
+
+	// Converts request body to integers
+	key, err := strconv.Atoi(progression.Key)
+	mode, err := strconv.Atoi(progression.Mode)
+	progressionLength, err := strconv.Atoi(progression.ProgressionLength)
+
+	// Null check
+	if err != nil {
+		log.Fatal("Handling null check")
+	}
+
+	// Beginning generation of chord progression
+	modalScaleChords := generateModalChords(mode)
+	modalScaleSteps := generateModalSteps(mode)
+	modalScaleNotes := generateModalNotes(key, modalScaleSteps)
 	modalScale := mapModalScale(modalScaleNotes, modalScaleChords)
 	chordProgression := generateChordProgression(modalScale, progressionLength)
 
-	println(chordProgression)
+	// Encode chord progression and return json object
+	json.NewEncoder(w).Encode(chordProgression)
 }
 
-func serveModalScale(w http.ResponseWriter, r *http.Request) {
+func getModalScale(w http.ResponseWriter, r *http.Request) {
 
 }
