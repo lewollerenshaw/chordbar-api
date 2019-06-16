@@ -7,7 +7,12 @@ This is the api for chordbar which is written in go.
 To install and run this solution, you will need to download the listed prerequisites below.
 
 ## Prerequisites
-You will need to install [golang](https://golang.org/dl/) on your machine to run this program.
+- You will need to install [golang](https://golang.org/dl/) on your machine to run this program.
+
+- You will also need to installl Gorilla Mux by running this command
+```
+go get -u github.com/gorilla/mux
+```
 
 ## Running chordbar
 Once you have installed the listed dependencies, clone the repository by typing the following into cmd/ terminal
@@ -21,3 +26,8 @@ go build
 
 ./chordbar-api
 ```
+
+# Resources
+[Gorilla Mux](https://github.com/gorilla/mux) implements a request router and dispatcher for matching incoming requests to their respective handler.
+
+

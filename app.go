@@ -52,10 +52,8 @@ func getChordProgression(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("Handling null check")
 	}
 
-	chordProgression := serveChordProgression(key, mode, progressionLength)
-
 	// Encode chord progression and return json object
-	json.NewEncoder(w).Encode(chordProgression)
+	json.NewEncoder(w).Encode(serveChordProgression(key, mode, progressionLength))
 }
 
 func getModalScale(w http.ResponseWriter, r *http.Request) {
