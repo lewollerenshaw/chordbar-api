@@ -3,10 +3,10 @@ Chordbar is a music theory tool designed to generate modal chord progressions ba
 
 This is the api for chordbar which is written in go.
 
-# Installation 
+## Installation 
 To install and run this solution, you will need to download the listed prerequisites below.
 
-## Prerequisites
+### Prerequisites
 - You will need to install [golang](https://golang.org/dl/) on your machine to run this program.
 
 - You will also need to installl [Gorilla Mux](https://github.com/gorilla/mux) by running this command.
@@ -15,7 +15,7 @@ To install and run this solution, you will need to download the listed prerequis
 go get -u github.com/gorilla/mux
 ```
 
-## Running chordbar
+### Running chordbar
 Once you have installed the listed dependencies, clone the repository by typing the following into cmd/ terminal
 
 ```
@@ -26,7 +26,7 @@ cd chordbar-api
 go build && ./chordbar-api
 ```
 
-# Resources
+## Resources
 [Gorilla Mux](https://github.com/gorilla/mux) implements a request router and dispatcher for matching incoming requests to their respective handler.
 
 
