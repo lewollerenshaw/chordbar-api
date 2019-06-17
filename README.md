@@ -16,7 +16,7 @@ go get -u github.com/gorilla/mux
 ```
 
 ### Running chordbar
-Once you have installed the listed dependencies, clone the repository by typing the following into cmd/ terminal
+Once you have installed the listed dependencies, clone the repository and run chordbar with the following commands
 
 ```
 git clone https://github.com/lewollerenshaw/chordbar-api.git
