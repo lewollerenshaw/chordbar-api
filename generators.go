@@ -93,6 +93,16 @@ func generateChordProgression(modalScale map[int]Chord, progressionLength int) m
 
 // Generates a progression object based on passed paramaters, contains scale, key, and mode types
 func generateModalScale(scale map[int]Chord, key int, mode int) Scale {
-	return Scale{}
+	var newScale Scale
 
+	newScale.Key = noteMap[key]
+	newScale.Mode = modeMap[mode]
+
+	for i := 1; i < 8; i++ {
+		newScale.Chords = append(newScale.Chords, scale[i])
+	}
+
+	println(newScale.Chords)
+
+	return newScale
 }
