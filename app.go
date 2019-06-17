@@ -33,6 +33,7 @@ func testConnection(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(chord)
 }
 
+// Get chord progressions
 func getChordProgression(w http.ResponseWriter, r *http.Request) {
 	log.Println("Get Progression:  Hit by request")
 	w.Header().Set("Content-Type", "application/json")
@@ -56,6 +57,25 @@ func getChordProgression(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(serveChordProgression(key, mode, progressionLength))
 }
 
+// Get modal scales
 func getModalScale(w http.ResponseWriter, r *http.Request) {
+	log.Println("Get modal scale: Hit by request")
+	w.Header().Set("Content-Type", "application/json")
+
+	var scale Scale
+
+	_ = json.NewDecoder(r.Body).Decode(&scale)
+
+	// Converts request body to integers
+	key, err := strconv.Atoi(scale.Key)
+	mode, err := strconv.Atoi(scale.Mode)
+
+	// Null check
+	if err != nil {
+		log.Fatal("Handling null check")
+	}
+
+	// Encode scale and return json object
+	json.NewEncoder(w).Encode(serveModalScale(key, mode))
 
 }

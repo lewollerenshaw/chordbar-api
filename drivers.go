@@ -9,6 +9,10 @@ func serveChordProgression(key int, mode int, progressionLength int) map[int]Cho
 	return generateChordProgression(modalScale, progressionLength)
 }
 
-func serveModalScale(key int, mode int, Progression int) Scale {
-	return Scale{}
+func serveModalScale(key int, mode int) Scale {
+	modalScaleChords := generateModalChords(mode)
+	modalScaleSteps := generateModalSteps(mode)
+	modalScaleNotes := generateModalNotes(key, modalScaleSteps)
+	modalScale := mapModalScale(modalScaleNotes, modalScaleChords)
+	return generateModalScale(modalScale, key, mode)
 }

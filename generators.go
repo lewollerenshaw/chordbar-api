@@ -90,3 +90,9 @@ func generateChordProgression(modalScale map[int]Chord, progressionLength int) m
 
 	return chordProgression
 }
+
+// Generates a progression object based on passed paramaters, contains scale, key, and mode types
+func generateModalScale(scale map[int]Chord, key int, mode int) Scale {
+	return Scale{}
+
+}
