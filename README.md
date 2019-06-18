@@ -29,4 +29,6 @@ go build && ./chordbar-api
 ## Resources
 [Gorilla Mux](https://github.com/gorilla/mux) implements a request router and dispatcher for matching incoming requests to their respective handler.
 
+[Postman](https://www.getpostman.com/downloads/) is a development tool for creating and test RESTful APIs.
+
 

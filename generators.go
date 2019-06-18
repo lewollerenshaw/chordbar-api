@@ -2,6 +2,7 @@ package main
 
 import (
 	"math/rand"
+	"strconv"
 	"time"
 )
 
@@ -105,4 +106,19 @@ func generateModalScale(scale map[int]Chord, key int, mode int) Scale {
 	println(newScale.Chords)
 
 	return newScale
+}
+
+// Create a progression object, contains key, mode and chord progression
+func createProgressionObject(progression map[int]Chord, key int, mode int, progressionLength int) Progression {
+	var newProgression Progression
+
+	newProgression.Key = noteMap[key]
+	newProgression.Mode = modeMap[mode]
+	newProgression.ProgressionLength = strconv.Itoa(progressionLength)
+
+	for i := 1; i <= progressionLength; i++ {
+		newProgression.Chords = append(newProgression.Chords, progression[i])
+	}
+
+	return newProgression
 }

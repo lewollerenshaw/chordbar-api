@@ -14,23 +14,9 @@ func main() {
 	r := mux.NewRouter()
 
 	// Route handlers / endpoints
-	r.HandleFunc("/api/test", testConnection).Methods("GET")
 	r.HandleFunc("/api/progression", getChordProgression).Methods("GET")
 	r.HandleFunc("/api/scale", getModalScale).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", r))
-}
-
-// Test connection to API is available
-// TODO: Remove this function when development finished
-func testConnection(w http.ResponseWriter, r *http.Request) {
-	chord := Chord{
-		Note:  "3",
-		Chord: "3",
-	}
-	log.Println("Test: Hit by request")
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(chord)
 }
 
 // Get chord progressions
@@ -77,5 +63,4 @@ func getModalScale(w http.ResponseWriter, r *http.Request) {
 
 	// Encode scale and return json object
 	json.NewEncoder(w).Encode(serveModalScale(key, mode))
-
 }
