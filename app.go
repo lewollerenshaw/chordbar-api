@@ -5,23 +5,19 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-
 	"github.com/gorilla/mux"
 )
 
 func main() {
-	// Init router
-	r := mux.NewRouter()
-
-	// Route handlers / endpoints
-	r.HandleFunc("/api/progression", getChordProgression).Methods("GET")
-	r.HandleFunc("/api/scale", getModalScale).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8000", r))
+	router := mux.NewRouter()
+	router.HandleFunc("/api/progression", getChordProgression).Methods("POST", "OPTIONS")
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
 
 // Get chord progressions
 func getChordProgression(w http.ResponseWriter, r *http.Request) {
 	log.Println("Get Progression:  Hit by request")
+    w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 
 	var progression Progression
@@ -36,7 +32,7 @@ func getChordProgression(w http.ResponseWriter, r *http.Request) {
 
 	// Null check
 	if err != nil {
-		log.Fatal("Handling null check")
+		json.NewEncoder(w).Encode("At least you tried!")
 	}
 
 	// Encode chord progression and return json object
@@ -46,6 +42,7 @@ func getChordProgression(w http.ResponseWriter, r *http.Request) {
 // Get modal scales
 func getModalScale(w http.ResponseWriter, r *http.Request) {
 	log.Println("Get modal scale: Hit by request")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 
 	var scale Scale
