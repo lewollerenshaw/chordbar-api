@@ -36,7 +36,7 @@ var scaleStepsMap = map[int]int{
 // Maps of musical notes, to 24 to account for possibility of loop hitting
 var noteMap = map[int]string{
 	1:  "C",
-	2:  "Db",
+	2:  "C#",
 	3:  "D",
 	4:  "Eb",
 	5:  "E",
